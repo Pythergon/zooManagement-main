@@ -1,13 +1,26 @@
 Just a file to brain dump no
 matter how stupid it is.
 
-Animals on its seperate loop/thread 
-need their states
-states need to be acceable via console
-
-put animal objects on one thread
-
-main colsole will have User i/o 
-like hardware inturupts
+Were gonna need some time modules to run the Game
+there should be a main loop which will handle player I/o
+and then a second loop running animal stuff
 
 Check out java.util.LocalDate
+
+Things for the Game:
+
+Animals get hungry
+ |--> Every five minutes or so
+Animals escape
+ |--> Every twenty minutes or so
+
+New ideas:
+
+Animal happiness
+
+Animals mate 
+ |--> If hunger < 2
+ |--> If container.spaceLeft != 0
+ |--> If gender1 != gender2
+ |--> If animals == happy 
+ |--> Every half hour

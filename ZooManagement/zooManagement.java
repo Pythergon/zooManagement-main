@@ -8,15 +8,7 @@ public class zooManagement {
         container Conatainer1 = new container(2);
         food Hay = new food("Hay",10);
 
-        // Object interactions!
-        Spankey.hungerLevel = 2;
-        Spankey.containAnimal(Conatainer1, Spankey);
-        Romeo.containAnimal(Conatainer1, Romeo);
-        Bambi.containAnimal(Conatainer1, Bambi); 
-        
-        Conatainer1.feedAll(Hay);
-        // System.out.println(Hay.quantity);
-        System.out.println(Conatainer1.spaceLeft);
-        System.out.println(Spankey.toString());
+        // Game loop - when I get home though lol
+
     }
 }
