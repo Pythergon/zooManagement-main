@@ -1,3 +1,6 @@
+Just a file to brain dump no
+matter how stupid it is.
+
 Animals on its seperate loop/thread 
 need their states
 states need to be acceable via console
