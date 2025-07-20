@@ -12,9 +12,15 @@ public class container {
         this.spaceLeft = size;
     }
     
-    public void feedAll() {
+    public void feedAll(food foodName) {
         for (animal a : animals ) {
             a.changeHunger(0);
+            if (foodName.quantity < 0) {
+                System.out.println("Not enough food!");
+                break;  
+            } else {
+                foodName.quantity--;
+            }    
         }
     }
     

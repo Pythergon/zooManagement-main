@@ -26,11 +26,9 @@ public class animal {
         }
     }
 
-    public void describe() {
-        // String newAge = Integer.toString(age);
-        // String output[] = {this.name, newAge, this.species};
-        System.out.printf("%s is a %d year old %s \n", this.name, this.age, this.species);
-        System.out.printf("Containment: %b \n", this.isContained);
+    @Override
+    public String toString() {
+        return String.format("%s is a %d year old %s", this.name, this.age, this.species);
     }
 
 }

@@ -9,10 +9,9 @@ public class zooManagement {
         Spankey.containAnimal(Conatainer1, Spankey);
         Romeo.containAnimal(Conatainer1, Romeo);
         
-        Conatainer1.feedAll();
-        // System.out.println(Spankey.hungerLevel);
+        Conatainer1.feedAll(Hay);
+        // System.out.println(Hay.quantity);
         System.out.println(Conatainer1.spaceLeft);
-        Spankey.describe();
-        // System.out.println(Conatainer1.animals);
+        System.out.println(Spankey.toString());
     }
 }
