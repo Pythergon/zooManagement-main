@@ -1,0 +1,10 @@
+Animals on its seperate loop/thread 
+need their states
+states need to be acceable via console
+
+put animal objects on one thread
+
+main colsole will have User i/o 
+like hardware inturupts
+
+Check out java.util.LocalDate
