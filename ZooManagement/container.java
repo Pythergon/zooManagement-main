@@ -13,7 +13,9 @@ public class container {
     }
     
     public void feedAll() {
-        
+        for (animal a : animals ) {
+            a.changeHunger(0);
+        }
     }
     
 }
