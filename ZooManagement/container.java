@@ -16,7 +16,7 @@ public class container {
         for (animal a : animals ) {
             a.changeHunger(0);
             if (foodName.quantity < 0) {
-                System.out.println("Not enough food!");
+                System.out.println("Outta food bro!");
                 break;  
             } else {
                 foodName.quantity--;
