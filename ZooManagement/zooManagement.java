@@ -50,6 +50,7 @@ public class zooManagement {
                     break;
                 default:
                     System.out.println("Function Not-Found");
+                    break;
             }   
 
             //running = false;
