@@ -10,5 +10,15 @@ public class zooManagement {
 
         // Game loop - when I get home though lol
 
+        Boolean running = true;
+
+        while (running) {
+            // Output current state
+            
+            // Get user input
+
+            // Update game state (Based on user input)
+        }
+
     }
 }
