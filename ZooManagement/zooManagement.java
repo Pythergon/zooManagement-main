@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class zooManagement {
@@ -11,29 +13,46 @@ public class zooManagement {
         container Conatainer1 = new container(2);
         food Hay = new food("Hay",10);
 
-        Conatainer1.containAnimal(Bambi);
+        // Animal list - crucial for checking
+        List<animal> animals = new ArrayList<>();        
+        animals.add(Romeo);
+        animals.add(Spankey);
+        animals.add(Bambi);
 
-        // Game loop - when I get home though lol
+        Conatainer1.containAnimal(Bambi);
 
         Boolean running = true;
 
         while (running) {
             // Output current state
+            System.out.println(Conatainer1.animals.toString());
+            System.out.println(animals.toString());
+
+            /*
             for (animal a: Conatainer1.animals){
                 System.out.println(a.name);
             }
+            */
+
             // Get user input
-            System.out.println("Would you like to add an animal to a container");
+            System.out.println("What would you like to-do?");
             String userInput = scanner.nextLine(); 
             // Update game state (Based on user input)
-            for (animal a : Conatainer1.animals) {
-                if (a.name == userInput){
-                    Conatainer1.containAnimal(a);
-                }
-            }
+            switch (userInput) {
+                case "Add Animal":
+                    System.out.println("Which Animal?");
+                    userInput = scanner.nextLine();
+                    System.out.println(userInput);
+                    for (animal a : animals) {
+                        if (a.name == userInput) {
+                            Conatainer1.containAnimal(a);
+                        }          
+                    }
+                
+            }   
 
-            running = false;
+            //running = false;
         }
-
+        scanner.close();
     }
 }
