@@ -25,6 +25,8 @@ public class zooManagement {
 
         Boolean running = true;
 
+        System.out.println("1. Add Animal \n2. Exit \n");
+
         while (running) {
             // Output current state
             System.out.println(Container1.animals.toString());
@@ -45,6 +47,8 @@ public class zooManagement {
                         }
                     }
                     break;
+                case "Exit":
+                    running = false;
                 default:
                     System.out.println("Function Not-Found");
                     break;
