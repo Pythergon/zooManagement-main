@@ -10,7 +10,7 @@ public class zooManagement {
         animal Romeo = new animal("Romeo", 4, "Horse");
         animal Spankey = new animal("Spankey", 5, "Donkey");
         animal Bambi = new animal("Bambi", 2, "Deer");
-        container Container1 = new container(2);
+        container Container1 = new container(2, "Container1");
         food Hay = new food("Hay",10);
 
         // Animal list - crucial for checking
@@ -57,6 +57,14 @@ public class zooManagement {
                     for (animal a : animals) {
                         System.out.println(a.name + " : " + a.hungerLevel);
                     }
+                case "Feed":
+                    System.out.println("Which container would you like to feed?");
+                    userInput = scanner.nextLine(); 
+                    for (container c : containers) {
+                        if (c.name.equals(userInput))
+                            c.feedAll(Hay);
+                    }
+
                 default:
                     System.out.println("Function Not-Found");
                     break;

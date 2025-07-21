@@ -3,12 +3,14 @@ import java.util.List;
 
 public class container {
     public int size;
+    public String name;
     public int spaceLeft;
     List<animal> animals = new ArrayList<>();
     // public String speciesContainmentIndex;
 
-    public container(int size) {
+    public container(int size, String name) {
         this.size = size;
+        this.name = name;
         this.spaceLeft = size;
     }
 

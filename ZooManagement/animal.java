@@ -20,9 +20,9 @@ public class animal {
 
     public void getHungry() {
         Random random = new Random();
-        final int DURATION_IN_SECONDS = random.nextInt(5) + 1; // 1-5 minutes * 60 seconds/minute
+        int DURATION_IN_SECONDS = (random.nextInt(5) + 1) * 60; 
 
-        System.out.println("Debug : Timer started for " + this.name);
+        // System.out.println("Debug : Timer started for " + this.name);
 
         Thread timerThread = new Thread(() -> {
             
