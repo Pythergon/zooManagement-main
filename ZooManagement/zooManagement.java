@@ -10,7 +10,7 @@ public class zooManagement {
         animal Romeo = new animal("Romeo", 4, "Horse");
         animal Spankey = new animal("Spankey", 5, "Donkey");
         animal Bambi = new animal("Bambi", 2, "Deer");
-        container Conatainer1 = new container(2);
+        container Container1 = new container(2);
         food Hay = new food("Hay",10);
 
         // Animal list - crucial for checking
@@ -19,24 +19,21 @@ public class zooManagement {
         animals.add(Spankey);
         animals.add(Bambi);
 
-        Conatainer1.containAnimal(Bambi);
+        List<container> containers = new ArrayList<>();
+        containers.add(Container1);
+        Container1.containAnimal(Bambi);
 
         Boolean running = true;
 
         while (running) {
             // Output current state
-            System.out.println(Conatainer1.animals.toString());
+            System.out.println(Container1.animals.toString());
             System.out.println(animals.toString());
-
-            /*
-            for (animal a: Conatainer1.animals){
-                System.out.println(a.name);
-            }
-            */
 
             // Get user input
             System.out.println("What would you like to-do?");
             String userInput = scanner.nextLine(); 
+
             // Update game state (Based on user input)
             switch (userInput) {
                 case "Add Animal":
@@ -44,7 +41,7 @@ public class zooManagement {
                     userInput = scanner.nextLine();
                     for (animal a : animals) {
                         if (a.name.equals(userInput)) {
-                            Conatainer1.containAnimal(a);
+                            Container1.containAnimal(a);
                         }
                     }
                     break;

@@ -22,7 +22,6 @@ public class container {
         }
     }
 
-
     public void feedAll(food foodName) {
         for (animal a : animals ) {
             a.changeHunger(0);
