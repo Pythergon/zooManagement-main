@@ -29,7 +29,7 @@ public class zooManagement {
 
         Boolean running = true;
 
-        System.out.println("1. Add Animal \n2. Exit \n3. Check Hunger\n4. ");
+        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n");
 
         while (running) {
             // Output current state
