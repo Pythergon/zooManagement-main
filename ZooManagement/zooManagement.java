@@ -23,9 +23,13 @@ public class zooManagement {
         containers.add(Container1);
         Container1.containAnimal(Bambi);
 
+        for (animal a : animals) {
+            a.getHungry();
+        }
+
         Boolean running = true;
 
-        System.out.println("1. Add Animal \n2. Exit \n");
+        System.out.println("1. Add Animal \n2. Exit \n3. Check Hunger\n4. ");
 
         while (running) {
             // Output current state
@@ -49,6 +53,10 @@ public class zooManagement {
                     break;
                 case "Exit":
                     running = false;
+                case "Check Hunger":
+                    for (animal a : animals) {
+                        System.out.println(a.name + " : " + a.hungerLevel);
+                    }
                 default:
                     System.out.println("Function Not-Found");
                     break;

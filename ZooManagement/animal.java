@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class animal {
     public String name;
     public int age;
@@ -14,6 +16,28 @@ public class animal {
 
     public void changeHunger(int newHunger){
         this.hungerLevel = newHunger;
+    }
+
+    public void getHungry() {
+        Random random = new Random();
+        final int DURATION_IN_SECONDS = random.nextInt(5) + 1; // 1-5 minutes * 60 seconds/minute
+
+        System.out.println("Debug : Timer started for " + this.name);
+
+        Thread timerThread = new Thread(() -> {
+            
+            while (true){
+                try {
+                    Thread.sleep(DURATION_IN_SECONDS * 1000);
+                    this.changeHunger(this.hungerLevel + 1);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }   
+            }
+        });
+
+        timerThread.setName("HungryTimerThread");
+        timerThread.start();
     }
 
     @Override
