@@ -16,16 +16,6 @@ public class animal {
         this.hungerLevel = newHunger;
     }
 
-    public void containAnimal(container containerName, animal animalName) {
-        if (containerName.spaceLeft >= 1){
-            containerName.animals.add(animalName);
-            animalName.isContained = true;
-            containerName.spaceLeft--;
-        } else {
-            System.out.println("Container outta space!");
-        }
-    }
-
     @Override
     public String toString() {
         return String.format("%s is a %d year old %s", this.name, this.age, this.species);

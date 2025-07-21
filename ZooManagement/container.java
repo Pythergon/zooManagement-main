@@ -11,7 +11,18 @@ public class container {
         this.size = size;
         this.spaceLeft = size;
     }
-    
+
+    public void containAnimal(animal animalName) {
+        if (this.spaceLeft >= 1){
+            this.animals.add(animalName);
+            animalName.isContained = true;
+            this.spaceLeft--;
+        } else {
+            System.out.println("Container outta space!");
+        }
+    }
+
+
     public void feedAll(food foodName) {
         for (animal a : animals ) {
             a.changeHunger(0);
