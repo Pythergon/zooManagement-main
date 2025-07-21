@@ -40,15 +40,16 @@ public class zooManagement {
             // Update game state (Based on user input)
             switch (userInput) {
                 case "Add Animal":
-                    System.out.println("Which Animal?");
+                    System.out.println("What animal would you like to add?");
                     userInput = scanner.nextLine();
-                    System.out.println(userInput);
                     for (animal a : animals) {
-                        if (a.name == userInput) {
+                        if (a.name.equals(userInput)) {
                             Conatainer1.containAnimal(a);
-                        }          
+                        }
                     }
-                
+                    break;
+                default:
+                    System.out.println("Function Not-Found");
             }   
 
             //running = false;
