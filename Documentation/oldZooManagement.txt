@@ -109,3 +109,49 @@ public class zooManagement {
         timerThread.setName("HungryTimerThread");
         timerThread.start();
     }
+
+    public void runTimeLoops() {
+        // Creating a new thread per container and running the time based logic
+        Thread objectThreads = new Thread(() -> {            
+            int timeWaited = 0;
+            while(true){
+                try {
+                    // 100 MS timesteps
+                    Thread.sleep(100);
+                    timeWaited += 100;
+                    // Update Hunger
+                    if (timeWaited > 10000) {
+                        for (Animal a : this.Animals) {
+                            a.changeHunger(a.HungerLevel + 1);
+                            // System.out.println("Hunger Changed");
+                        }
+                    timeWaited = 0;                     
+                    }    
+                } catch (Exception e) {
+                }
+            }
+        }); 
+        objectThreads.start();
+    }    public void runTimeLoops() {
+        // Creating a new thread per container and running the time based logic
+        Thread objectThreads = new Thread(() -> {            
+            int timeWaited = 0;
+            while(true){
+                try {
+                    // 100 MS timesteps
+                    Thread.sleep(100);
+                    timeWaited += 100;
+                    // Update Hunger
+                    if (timeWaited > 10000) {
+                        for (Animal a : this.Animals) {
+                            a.changeHunger(a.HungerLevel + 1);
+                            // System.out.println("Hunger Changed");
+                        }
+                    timeWaited = 0;                     
+                    }    
+                } catch (Exception e) {
+                }
+            }
+        }); 
+        objectThreads.start();
+    }

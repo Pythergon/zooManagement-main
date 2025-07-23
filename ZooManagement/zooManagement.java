@@ -32,8 +32,13 @@ public class zooManagement {
 
         System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n");
 
-        while (running) {
+        while (running == true) {
             // Output current state - Debug & State Checking
+            for (Container c : containers) {
+                if (c.Animals.isEmpty()) {
+                    System.out.println("You lose!");
+                }
+            }
             System.out.println(container1.Animals.toString());
             System.out.println(Animals.toString());
 
@@ -74,6 +79,6 @@ public class zooManagement {
 
             //running = false;
         }
-        scanner.close();
+    scanner.close();
     }
 }
