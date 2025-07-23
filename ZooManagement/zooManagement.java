@@ -7,23 +7,23 @@ public class zooManagement {
 
         // Object declarations!
         Scanner scanner = new Scanner(System.in);
-        animal romeo = new animal("Romeo", 4, "Horse");
-        animal spankey = new animal("Spankey", 5, "Donkey");
-        animal bambi = new animal("Bambi", 2, "Deer");
-        container container1 = new container(2, "Container1");
-        food Hay = new food("Hay",10);
+        Animal romeo = new Animal("Romeo", 4, "Horse");
+        Animal spankey = new Animal("Spankey", 5, "Donkey");
+        Animal bambi = new Animal("Bambi", 2, "Deer");
+        Container container1 = new Container(2, "Container1");
+        Food Hay = new Food("Hay",10);
 
         // Animal list - crucial for checking
-        List<animal> Animals = new ArrayList<>();        
+        List<Animal> Animals = new ArrayList<>();        
         Animals.add(romeo);
         Animals.add(spankey);
         Animals.add(bambi);
 
-        List<container> containers = new ArrayList<>();
+        List<Container> containers = new ArrayList<>();
         containers.add(container1);
         container1.containAnimal(bambi);
 
-        for (animal a : Animals) {
+        for (Animal a : Animals) {
             a.getHungry();
         }
 
@@ -45,7 +45,7 @@ public class zooManagement {
                 case "Add Animal":
                     System.out.println("What animal would you like to add?");
                     userInput = scanner.nextLine();
-                    for (animal a : Animals) {
+                    for (Animal a : Animals) {
                         if (a.Name.equals(userInput)) {
                             container1.containAnimal(a);
                         }
@@ -54,13 +54,13 @@ public class zooManagement {
                 case "Exit":
                     running = false;
                 case "Check Hunger":
-                    for (animal a : Animals) {
+                    for (Animal a : Animals) {
                         System.out.println(a.Name + " : " + a.HungerLevel);
                     }
                 case "Feed":
                     System.out.println("Which container would you like to feed?");
                     userInput = scanner.nextLine(); 
-                    for (container c : containers) {
+                    for (Container c : containers) {
                         if (c.Name.equals(userInput))
                             c.feedAll(Hay);
                     }

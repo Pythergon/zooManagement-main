@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class container {
+public class Container {
     public int Size;
     public String Name;
     public int SpaceLeft;
-    List<animal> Animals = new ArrayList<>();
+    List<Animal> Animals = new ArrayList<>();
     // public String speciesContainmentIndex;
 
-    public container(int Size, String Name) {
+    public Container(int Size, String Name) {
         this.Size = Size;
         this.Name = Name;
         this.SpaceLeft = Size;
     }
 
-    public void containAnimal(animal animalName) {
+    public void containAnimal(Animal animalName) {
         if (this.SpaceLeft >= 1){
             this.Animals.add(animalName);
             animalName.isContained = true;
@@ -24,8 +24,8 @@ public class container {
         }
     }
 
-    public void feedAll(food foodName) {
-        for (animal a : Animals ) {
+    public void feedAll(Food foodName) {
+        for (Animal a : Animals ) {
             a.changeHunger(0);
             if (foodName.Quantity < 0) {
                 System.out.println("Outta food bro!");

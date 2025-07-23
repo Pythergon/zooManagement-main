@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class animal {
+public class Animal {
     public String Name;
     public int Age;
     public String Species;
@@ -8,7 +8,7 @@ public class animal {
 
     public boolean isContained = false;
 
-    public animal(String Name, int Age, String Species) {
+    public Animal(String Name, int Age, String Species) {
         this.Name = Name;
         this.Age = Age;
         this.Species = Species;
