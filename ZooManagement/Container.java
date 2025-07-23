@@ -36,4 +36,31 @@ public class Container {
         }
     }
     
+    public void runTimeLoops() {
+        
+        int timeNeeded = 1000 *60;
+        
+        Thread objectThreads = new Thread(() -> {
+            
+            int theTimeWaited = 0;
+            
+            while(true){
+                try {
+                    Thread.sleep(100);
+                    theTimeWaited += 100;
+                    //System.out.println("It's been 100ms");
+                    if (theTimeWaited > 10000) {
+                        for (Animal a : this.Animals) {
+                            a.changeHunger(a.HungerLevel + 1);
+                            // System.out.println("Hunger Changed");
+                        }
+                    theTimeWaited = 0;                     
+                    }    
+                } catch (Exception e) {
+                }
+            }
+        }); 
+        objectThreads.start();
+    }
+
 }

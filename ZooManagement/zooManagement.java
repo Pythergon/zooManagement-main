@@ -11,7 +11,7 @@ public class zooManagement {
         Animal spankey = new Animal("Spankey", 5, "Donkey");
         Animal bambi = new Animal("Bambi", 2, "Deer");
         Container container1 = new Container(2, "Container1");
-        Food Hay = new Food("Hay",10);
+        Food Hay = new Food("Hay",100);
 
         // Animal list - crucial for checking
         List<Animal> Animals = new ArrayList<>();        
@@ -23,9 +23,7 @@ public class zooManagement {
         containers.add(container1);
         container1.containAnimal(bambi);
 
-        for (Animal a : Animals) {
-            a.getHungry();
-        }
+        container1.runTimeLoops();
 
         Boolean running = true;
 
@@ -57,6 +55,7 @@ public class zooManagement {
                     for (Animal a : Animals) {
                         System.out.println(a.Name + " : " + a.HungerLevel);
                     }
+                    break;
                 case "Feed":
                     System.out.println("Which container would you like to feed?");
                     userInput = scanner.nextLine(); 
@@ -64,7 +63,7 @@ public class zooManagement {
                         if (c.Name.equals(userInput))
                             c.feedAll(Hay);
                     }
-
+                    break;
                 default:
                     System.out.println("Function Not-Found");
                     break;
