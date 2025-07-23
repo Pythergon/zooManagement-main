@@ -38,7 +38,7 @@ public class Container {
     
     public void runTimeLoops() {
         
-        int timeNeeded = 1000 *60;
+        // int timeNeeded = 1000 *60;
         
         Thread objectThreads = new Thread(() -> {
             
@@ -48,7 +48,8 @@ public class Container {
                 try {
                     Thread.sleep(100);
                     theTimeWaited += 100;
-                    //System.out.println("It's been 100ms");
+
+                    // Here is the logic!!!
                     if (theTimeWaited > 10000) {
                         for (Animal a : this.Animals) {
                             a.changeHunger(a.HungerLevel + 1);
