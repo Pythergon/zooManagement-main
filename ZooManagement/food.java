@@ -1,9 +1,9 @@
 public class food {
-    public String foodName;
-    public int quantity;
+    public String FoodName;
+    public int Quantity;
 
-    food(String foodName, int quantity) {
-        this.foodName = foodName;
-        this.quantity = quantity;
+    food(String FoodName, int Quantity) {
+        this.FoodName = FoodName;
+        this.Quantity = Quantity;
     }
 }

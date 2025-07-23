@@ -2,36 +2,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class container {
-    public int size;
-    public String name;
-    public int spaceLeft;
-    List<animal> animals = new ArrayList<>();
+    public int Size;
+    public String Name;
+    public int SpaceLeft;
+    List<animal> Animals = new ArrayList<>();
     // public String speciesContainmentIndex;
 
-    public container(int size, String name) {
-        this.size = size;
-        this.name = name;
-        this.spaceLeft = size;
+    public container(int Size, String Name) {
+        this.Size = Size;
+        this.Name = Name;
+        this.SpaceLeft = Size;
     }
 
     public void containAnimal(animal animalName) {
-        if (this.spaceLeft >= 1){
-            this.animals.add(animalName);
+        if (this.SpaceLeft >= 1){
+            this.Animals.add(animalName);
             animalName.isContained = true;
-            this.spaceLeft--;
+            this.SpaceLeft--;
         } else {
             System.out.println("Container outta space!");
         }
     }
 
     public void feedAll(food foodName) {
-        for (animal a : animals ) {
+        for (animal a : Animals ) {
             a.changeHunger(0);
-            if (foodName.quantity < 0) {
+            if (foodName.Quantity < 0) {
                 System.out.println("Outta food bro!");
                 break;  
             } else {
-                foodName.quantity--;
+                foodName.Quantity--;
             }    
         }
     }

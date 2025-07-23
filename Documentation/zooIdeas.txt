@@ -7,6 +7,13 @@ and then a second loop running animal stuff
 
 Check out java.util.LocalDate
 
+Fulfill Java coding standards - class defs and Objects need to be capatilized 
+DONE instances of class should be lowercased 
+
+Spawn single thread for all animals that will hold the hunger updates ect for
+all the animals - Increment in 100ms delays for efficency sake
+
+
 Things for the Game:
 
 Animals get hungry
