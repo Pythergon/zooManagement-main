@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
+    // Varible Decleration
     public int Size;
     public String Name;
     public int SpaceLeft;
     List<Animal> Animals = new ArrayList<>();
     // public String speciesContainmentIndex;
 
+    // Object Container
     public Container(int Size, String Name) {
         this.Size = Size;
         this.Name = Name;
@@ -37,25 +39,21 @@ public class Container {
     }
     
     public void runTimeLoops() {
-        
-        // int timeNeeded = 1000 *60;
-        
-        Thread objectThreads = new Thread(() -> {
-            
-            int theTimeWaited = 0;
-            
+        // Creating a new thread per container and running the time based logic
+        Thread objectThreads = new Thread(() -> {            
+            int timeWaited = 0;
             while(true){
                 try {
+                    // 100 MS timesteps
                     Thread.sleep(100);
-                    theTimeWaited += 100;
-
+                    timeWaited += 100;
                     // Here is the logic!!!
-                    if (theTimeWaited > 10000) {
+                    if (timeWaited > 10000) {
                         for (Animal a : this.Animals) {
                             a.changeHunger(a.HungerLevel + 1);
                             // System.out.println("Hunger Changed");
                         }
-                    theTimeWaited = 0;                     
+                    timeWaited = 0;                     
                     }    
                 } catch (Exception e) {
                 }

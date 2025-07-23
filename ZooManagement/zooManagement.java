@@ -19,18 +19,21 @@ public class zooManagement {
         Animals.add(spankey);
         Animals.add(bambi);
 
+        // Container List - needed for running threads as of now
         List<Container> containers = new ArrayList<>();
         containers.add(container1);
         container1.containAnimal(bambi);
 
-        container1.runTimeLoops();
+        for (Container c : containers) {
+            c.runTimeLoops();
+        }
 
         Boolean running = true;
 
-        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n");
+        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n");
 
         while (running) {
-            // Output current state
+            // Output current state - Debug & State Checking
             System.out.println(container1.Animals.toString());
             System.out.println(Animals.toString());
 

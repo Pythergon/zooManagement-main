@@ -13,6 +13,7 @@ DONE instances of class should be lowercased
 Spawn single thread for all animals that will hold the hunger updates ect for
 all the animals - Increment in 100ms delays for efficency sake
 
+Try moving the runTimeLoops() function to the zooManagement Script
 
 Things for the Game:
 
