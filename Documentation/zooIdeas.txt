@@ -15,6 +15,8 @@ all the animals - Increment in 100ms delays for efficency sake
 
 Try moving the runTimeLoops() function to the zooManagement Script
 
+TODO: Put lose state logic in main loop
+
 Things for the Game:
 
 Animals get hungry

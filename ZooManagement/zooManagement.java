@@ -11,7 +11,9 @@ public class zooManagement {
         Animal spankey = new Animal("Spankey", 5, "Donkey");
         Animal bambi = new Animal("Bambi", 2, "Deer");
         Container container1 = new Container(2, "Container1");
-        Food Hay = new Food("Hay",100);
+        Container container2 = new Container(1, "Container2");
+        Food hay = new Food("Hay",100);
+        Food horseCrap = new Food("Horse Crap", 50);
 
         // Animal list - crucial for checking
         List<Animal> Animals = new ArrayList<>();        
@@ -22,7 +24,13 @@ public class zooManagement {
         // Container List - needed for running threads as of now
         List<Container> containers = new ArrayList<>();
         containers.add(container1);
+        containers.add(container2);
         container1.containAnimal(bambi);
+
+        // Foods list
+        List<Food> foods = new ArrayList<>();
+        foods.add(hay);
+        foods.add(horseCrap);
 
         for (Container c : containers) {
             c.runTimeLoops();
@@ -33,12 +41,6 @@ public class zooManagement {
         System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n");
 
         while (running == true) {
-            // Output current state - Debug & State Checking
-            for (Container c : containers) {
-                if (c.Animals.isEmpty()) {
-                    System.out.println("You lose!");
-                }
-            }
             System.out.println(container1.Animals.toString());
             System.out.println(Animals.toString());
 
@@ -50,30 +52,62 @@ public class zooManagement {
             switch (userInput) {
                 case "Add Animal":
                     System.out.println("What animal would you like to add?");
+                    System.out.println("You have uncontained animals:");
+                    for (Animal a : Animals) {
+                        if (!a.isContained){
+                            System.out.printf(" %s ", a.Name); 
+                        }
+                    }
+                    System.out.print("\n");
                     userInput = scanner.nextLine();
                     for (Animal a : Animals) {
                         if (a.Name.equals(userInput)) {
+                            for (Container c : containers){
+                                System.out.printf("What container would you like to add %s to? \n", userInput);
+                                if (c.SpaceLeft > 0){
+                                    System.out.print(c.Name);
+                                    System.out.print("\n");
+                                    userInput = scanner.nextLine();
+                                    if (c.Name.equals(userInput)){7
+                                        c.containAnimal(a);
+                                    }
+                                }
+                            }
                             container1.containAnimal(a);
                         }
                     }
                     break;
                 case "Exit":
-                    running = false;
+                    System.exit(1);
                 case "Check Hunger":
                     for (Animal a : Animals) {
-                        System.out.println(a.Name + " : " + a.HungerLevel);
+                        if (a.isContained){
+                            System.out.println(a.Name + " : " + a.HungerLevel);
+                        } else {
+                            System.out.println(a.Name + " is uncontained");
+                        }
                     }
                     break;
                 case "Feed":
                     System.out.println("Which container would you like to feed?");
-                    userInput = scanner.nextLine(); 
+                    userInput = scanner.nextLine();
+                    System.out.println("You have foods:");
+                    for (Food f : foods){
+                        System.out.println(f.FoodName);
+                    } 
                     for (Container c : containers) {
                         if (c.Name.equals(userInput))
-                            c.feedAll(Hay);
+                            for (Food f : foods) {
+                                System.out.println("What food would you like to use");
+                                userInput = scanner.nextLine();
+                                if (f.FoodName.equals(userInput)){
+                                    c.feedAll(f);
+                                }
+                            }
                     }
                     break;
                 default:
-                    System.out.println("Function Not-Found");
+                    System.out.println("Function Not-Found - " + userInput);
                     break;
             }   
 

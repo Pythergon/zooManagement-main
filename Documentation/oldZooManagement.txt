@@ -155,3 +155,10 @@ public class zooManagement {
         }); 
         objectThreads.start();
     }
+
+            for (Container c : containers) {
+                if (c.Animals.isEmpty()) {
+                    System.out.println("You Lost!");
+                    System.out.println("All animals got lost or died!");
+                }
+            }
