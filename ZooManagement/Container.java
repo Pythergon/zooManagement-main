@@ -6,6 +6,7 @@ public class Container {
     public int Size;
     public String Name;
     public int SpaceLeft;
+    public boolean hasAnimals;
     List<Animal> Animals = new ArrayList<>();
     // public String speciesContainmentIndex;
 

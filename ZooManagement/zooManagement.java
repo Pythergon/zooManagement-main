@@ -33,6 +33,9 @@ public class zooManagement {
         foods.add(horseCrap);
 
         for (Container c : containers) {
+            if (!c.Animals.isEmpty()){
+                c.hasAnimals = true;
+            }
             c.runTimeLoops();
         }
 
@@ -68,7 +71,7 @@ public class zooManagement {
                                     System.out.print(c.Name);
                                     System.out.print("\n");
                                     userInput = scanner.nextLine();
-                                    if (c.Name.equals(userInput)){7
+                                    if (c.Name.equals(userInput)){
                                         c.containAnimal(a);
                                     }
                                 }
