@@ -39,9 +39,9 @@ public class zooManagement extends Thread{
             c.runTimeLoops();
         }
 
-        MyThreading loseStateThread = new MyThreading();
-        // loseStateThread.run();
-        loseStateThread.runLoop(containers);
+        MyThreading loseStateRunnable = new MyThreading(containers);
+        Thread loseStateThread = new Thread(loseStateRunnable);
+        loseStateThread.start();
 
         Boolean running = true;
 
