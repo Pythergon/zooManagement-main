@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class zooManagement {
+public class zooManagement extends Thread{
     public static void main(String[] args) {
 
         // Object declarations!
@@ -38,6 +38,10 @@ public class zooManagement {
             }
             c.runTimeLoops();
         }
+
+        MyThreading loseStateThread = new MyThreading();
+        // loseStateThread.run();
+        loseStateThread.runLoop(containers);
 
         Boolean running = true;
 

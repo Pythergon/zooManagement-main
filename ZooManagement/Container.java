@@ -45,11 +45,14 @@ public class Container {
             int timeWaited = 0;
             while(true){
                 try {
+                    if (this.Animals.size() > 0){
+                        this.hasAnimals = true;
+                    } else {this.hasAnimals = false;}
                     // 100 MS timesteps
                     Thread.sleep(100);
                     timeWaited += 100;
                     // Update Hunger
-                    if (timeWaited > 15000) {
+                    if (timeWaited > 300) {
                         for (Animal a : this.Animals) {
                             a.changeHunger(a.HungerLevel + 1);
                             System.out.println(a.Name + " got hungry inside of " + this.Name);
@@ -60,12 +63,6 @@ public class Container {
                             }
                         }
                     timeWaited = 0;                     
-                    }    
-                    // Lose State
-                    if (this.Animals.isEmpty()){
-                        System.out.println("You Lost!");
-                        System.out.println("All animals got lost or died!");
-                        System.exit(1);
                     }
                 } catch (Exception e) {
                 }
