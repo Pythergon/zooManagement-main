@@ -10,15 +10,14 @@ public class MyThreading implements Runnable {
 
     @Override
     public void run() {
-        // Now, the logic from your original runLoop is inside the run() method
         while (true) {
             try {
                 Boolean hasSomeAnimals = false;
                 Thread.sleep(100); // Sleep for 100 milliseconds
-                for (Container c : containers) { // Use the instance variable 'containers'
+                for (Container c : containers) {
                     if (c.hasAnimals) {
                         hasSomeAnimals = true;
-                        break; // No need to check other containers if one has animals
+                        break;
                     }
                 }
                 if (!hasSomeAnimals) {

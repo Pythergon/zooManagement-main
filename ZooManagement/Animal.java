@@ -3,7 +3,7 @@ public class Animal {
     public String Name;
     public int Age;
     public String Species;
-    public int HungerLevel = 0; // 0-5
+    public int HungerLevel = 0; // 0-10
     public boolean isContained = false;
     public String BoxContained = "Not Contained";
 

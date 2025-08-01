@@ -45,7 +45,7 @@ public class zooManagement{
 
         Boolean running = true;
 
-        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n5. View Animals");
+        System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals");
 
         while (running == true) {
             // Get user input
@@ -138,12 +138,13 @@ public class zooManagement{
                         System.out.println(ConsoleColors.PURPLE + a.Name + " - Contained in: " + a.BoxContained + ConsoleColors.RESET);
                     }
                     break;
+                case "Commands":
+                    System.out.println(ConsoleColors.GREEN + "1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals" + ConsoleColors.RESET);
+                    break;
                 default:
                     System.out.println("Function Not-Found - " + userInput);
                     break;
-            }   
-
-            //running = false;
+            }
         }
     scanner.close();
     }

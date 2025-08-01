@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
-    // Varible Decleration
+    // Variable Declaration
     public int Size;
     public String Name;
     public int SpaceLeft;
     public boolean hasAnimals;
     List<Animal> Animals = new ArrayList<>();
-    // public String speciesContainmentIndex;
 
     // Object Container
     public Container(int Size, String Name) {
@@ -46,14 +45,12 @@ public class Container {
             int timeWaited = 0;
             while(true){
                 try {
-                    if (this.Animals.size() > 0){
-                        this.hasAnimals = true;
-                    } else {this.hasAnimals = false;}
+                    this.hasAnimals = !this.Animals.isEmpty();
                     // 100 MS timesteps
-                    Thread.sleep(10000);
+                    Thread.sleep(100);
                     timeWaited += 100;
                     // Update Hunger
-                    if (timeWaited > 300) {
+                    if (timeWaited > 10000) {
                         for (Animal a : this.Animals) {
                             a.changeHunger(a.HungerLevel + 1);
                             System.out.println(a.Name + " got hungry inside of " + this.Name);
@@ -65,11 +62,10 @@ public class Container {
                         }
                     timeWaited = 0;                     
                     }
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }); 
         objectThreads.start();
     }
-
 }
