@@ -49,7 +49,7 @@ public class Container {
                         this.hasAnimals = true;
                     } else {this.hasAnimals = false;}
                     // 100 MS timesteps
-                    Thread.sleep(100);
+                    Thread.sleep(10000);
                     timeWaited += 100;
                     // Update Hunger
                     if (timeWaited > 300) {

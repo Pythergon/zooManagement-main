@@ -69,18 +69,22 @@ public class zooManagement extends Thread{
                     userInput = scanner.nextLine();
                     for (Animal a : Animals) {
                         if (a.Name.equals(userInput)) {
+                            System.out.println("What Container Would you like to add the animal to?");
                             for (Container c : containers){
-                                System.out.printf("What container would you like to add %s to? \n", userInput);
-                                if (c.SpaceLeft > 0){
+                                if (c.SpaceLeft > 0) {
                                     System.out.print(c.Name);
-                                    System.out.print("\n");
-                                    userInput = scanner.nextLine();
+                                    System.out.print("\t");
+                                }
+                            }
+                            System.out.print("\n");
+                            userInput = scanner.nextLine();
+                            for (Container c : containers) {
+                                if (c.SpaceLeft > 0){
                                     if (c.Name.equals(userInput)){
                                         c.containAnimal(a);
                                     }
                                 }
                             }
-                            container1.containAnimal(a);
                         }
                     }
                     break;
