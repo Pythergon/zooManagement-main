@@ -22,6 +22,7 @@ public class Container {
             this.Animals.add(animalName);
             animalName.isContained = true;
             this.SpaceLeft--;
+            animalName.BoxContained = this.Name;
         } else {
             System.out.println("Container outta space!");
         }

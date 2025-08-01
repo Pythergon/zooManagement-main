@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class zooManagement extends Thread{
+public class zooManagement{
     public static void main(String[] args) {
 
         // Object declarations!
@@ -45,12 +45,9 @@ public class zooManagement extends Thread{
 
         Boolean running = true;
 
-        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n");
+        System.out.println("1. Exit \n2. Add Animal \n3. Check Hunger\n4. Feed\n5. View Animals");
 
         while (running == true) {
-            System.out.println(container1.Animals.toString());
-            System.out.println(Animals.toString());
-
             // Get user input
             System.out.println("What would you like to-do?");
             String userInput = scanner.nextLine(); 
@@ -62,7 +59,7 @@ public class zooManagement extends Thread{
                     System.out.println("You have uncontained animals:");
                     for (Animal a : Animals) {
                         if (!a.isContained){
-                            System.out.printf(" %s ", a.Name); 
+                            System.out.print(ConsoleColors.RED + a.Name + "\t" + ConsoleColors.RESET);
                         }
                     }
                     System.out.print("\n");
@@ -72,7 +69,7 @@ public class zooManagement extends Thread{
                             System.out.println("What Container Would you like to add the animal to?");
                             for (Container c : containers){
                                 if (c.SpaceLeft > 0) {
-                                    System.out.print(c.Name);
+                                    System.out.print(ConsoleColors.RED + c.Name + ConsoleColors.RESET);
                                     System.out.print("\t");
                                 }
                             }
@@ -82,6 +79,7 @@ public class zooManagement extends Thread{
                                 if (c.SpaceLeft > 0){
                                     if (c.Name.equals(userInput)){
                                         c.containAnimal(a);
+                                        System.out.println(ConsoleColors.RED + a.Name + " has been contained in - " + c.Name + ConsoleColors.RESET);
                                     }
                                 }
                             }
@@ -93,28 +91,51 @@ public class zooManagement extends Thread{
                 case "Check Hunger":
                     for (Animal a : Animals) {
                         if (a.isContained){
-                            System.out.println(a.Name + " : " + a.HungerLevel);
+                            System.out.println(ConsoleColors.YELLOW + a.Name + " : " + a.HungerLevel + ConsoleColors.RESET);
                         } else {
-                            System.out.println(a.Name + " is uncontained");
+                            System.out.println(ConsoleColors.YELLOW + a.Name + " is uncontained" + ConsoleColors.RESET);
                         }
                     }
                     break;
                 case "Feed":
-                    System.out.println("Which container would you like to feed?");
+                    // Check Container to feed
+                    String containerToFeed = "";
+                    System.out.println(ConsoleColors.CYAN + "What container would you like to feed?" + ConsoleColors.RESET);
+                    for (Container c : containers){
+                        System.out.print(ConsoleColors.CYAN + c.Name + ConsoleColors.RESET);
+                        System.out.print("\t");
+                    }
+                    System.out.print("\n");
                     userInput = scanner.nextLine();
-                    System.out.println("You have foods:");
+                    for (Container c : containers){
+                        if (userInput.equals(c.Name)){containerToFeed = c.Name;}
+                    }
+                    // Check which food to use
+                    String foodToUse = "";
+                    System.out.println(ConsoleColors.CYAN + "What food would you like to use?" + ConsoleColors.RESET);
                     for (Food f : foods){
-                        System.out.println(f.FoodName);
-                    } 
+                        System.out.print(ConsoleColors.CYAN + f.FoodName + ConsoleColors.RESET);
+                        System.out.print("\t");
+                    }
+                    System.out.print("\n");
+                    userInput = scanner.nextLine();
+                    for (Food f : foods){
+                        if (userInput.equals(f.FoodName)) {foodToUse = f.FoodName;}
+                    }
+                    // Feed container with said food
                     for (Container c : containers) {
-                        if (c.Name.equals(userInput))
+                        if (c.Name.equals(containerToFeed)) {
                             for (Food f : foods) {
-                                System.out.println("What food would you like to use");
-                                userInput = scanner.nextLine();
-                                if (f.FoodName.equals(userInput)){
+                                if (f.FoodName.equals(foodToUse)){
                                     c.feedAll(f);
                                 }
                             }
+                        }
+                    }
+                    break;
+                case "View Animals":
+                    for (Animal a : Animals){
+                        System.out.println(ConsoleColors.PURPLE + a.Name + " - Contained in: " + a.BoxContained + ConsoleColors.RESET);
                     }
                     break;
                 default:
