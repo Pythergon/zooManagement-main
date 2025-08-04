@@ -43,11 +43,11 @@ public class zooManagement{
         Thread loseStateThread = new Thread(loseStateRunnable);
         loseStateThread.start();
 
-        Boolean running = true;
+        boolean running = true;
 
         System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals");
 
-        while (running == true) {
+        while (running) {
             // Get user input
             System.out.println("What would you like to-do?");
             String userInput = scanner.nextLine(); 
@@ -115,7 +115,7 @@ public class zooManagement{
                     System.out.println(ConsoleColors.CYAN + "What food would you like to use?" + ConsoleColors.RESET);
                     for (Food f : foods){
                         System.out.print(ConsoleColors.CYAN + f.FoodName + ConsoleColors.RESET);
-                        System.out.print("\t");
+                        System.out.print("\t\t");
                     }
                     System.out.print("\n");
                     userInput = scanner.nextLine();
