@@ -5,13 +5,15 @@ public class Animal {
     public String Species;
     public int HungerLevel = 0; // 0-10
     public boolean isContained = false;
+    public String Gender;
     public String BoxContained = "Not Contained";
 
     // Animal Container
-    public Animal(String Name, int Age, String Species) {
+    public Animal(String Name, int Age, String Species, String Gender) {
         this.Name = Name;
         this.Age = Age;
         this.Species = Species;
+        this.Gender = Gender;
     }
 
     // Hunger Setter

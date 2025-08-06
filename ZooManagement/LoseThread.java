@@ -1,10 +1,10 @@
 import java.util.List;
 
-public class MyThreading implements Runnable {
+public class LoseThread implements Runnable {
     private List<Container> containers;
 
     // Constructor to receive the list of containers
-    public MyThreading(List<Container> containerList) {
+    public LoseThread(List<Container> containerList) {
         this.containers = containerList;
     }
 

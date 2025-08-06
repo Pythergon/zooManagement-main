@@ -7,11 +7,11 @@ public class zooManagement{
 
         // Object declarations!
         Scanner scanner = new Scanner(System.in);
-        Animal romeo = new Animal("Romeo", 4, "Horse");
-        Animal spankey = new Animal("Spankey", 5, "Donkey");
-        Animal bambi = new Animal("Bambi", 2, "Deer");
-        Container container1 = new Container(2, "Container1");
-        Container container2 = new Container(1, "Container2");
+        Animal romeo = new Animal("Romeo", 4, "Horse", "Male");
+        Animal spankey = new Animal("Spankey", 5, "Donkey", "Male");
+        Animal bambi = new Animal("Bambi", 2, "Deer", "Female");
+        Container container1 = new Container(5, "Container1");
+        Container container2 = new Container(2, "Container2");
         Food hay = new Food("Hay",100);
         Food horseCrap = new Food("Horse Crap", 50);
 
@@ -39,9 +39,13 @@ public class zooManagement{
             c.runTimeLoops();
         }
 
-        MyThreading loseStateRunnable = new MyThreading(containers);
+        LoseThread loseStateRunnable = new LoseThread(containers);
         Thread loseStateThread = new Thread(loseStateRunnable);
         loseStateThread.start();
+
+        // BreedingThread breedingThreadRunnable = new BreedingThread(containers);
+        // Thread breedingThreadThread = new Thread(breedingThreadRunnable);
+        // breedingThreadThread.start();
 
         boolean running = true;
 
@@ -50,11 +54,11 @@ public class zooManagement{
         while (running) {
             // Get user input
             System.out.println("What would you like to-do?");
-            String userInput = scanner.nextLine(); 
+            String userInput = scanner.nextLine();
 
             // Update game state (Based on user input)
-            switch (userInput) {
-                case "Add Animal":
+            switch (userInput.toLowerCase()) {
+                case "add animal":
                     System.out.println("What animal would you like to add?");
                     System.out.println("You have uncontained animals:");
                     for (Animal a : Animals) {
@@ -65,7 +69,7 @@ public class zooManagement{
                     System.out.print("\n");
                     userInput = scanner.nextLine();
                     for (Animal a : Animals) {
-                        if (a.Name.equals(userInput)) {
+                        if (a.Name.equalsIgnoreCase(userInput)) {
                             System.out.println("What Container Would you like to add the animal to?");
                             for (Container c : containers){
                                 if (c.SpaceLeft > 0) {
@@ -77,7 +81,7 @@ public class zooManagement{
                             userInput = scanner.nextLine();
                             for (Container c : containers) {
                                 if (c.SpaceLeft > 0){
-                                    if (c.Name.equals(userInput)){
+                                    if (c.Name.equalsIgnoreCase(userInput.toLowerCase())){
                                         c.containAnimal(a);
                                         System.out.println(ConsoleColors.RED + a.Name + " has been contained in - " + c.Name + ConsoleColors.RESET);
                                     }
@@ -86,9 +90,9 @@ public class zooManagement{
                         }
                     }
                     break;
-                case "Exit":
+                case "exit":
                     System.exit(1);
-                case "Check Hunger":
+                case "check hunger":
                     for (Animal a : Animals) {
                         if (a.isContained){
                             System.out.println(ConsoleColors.YELLOW + a.Name + " : " + a.HungerLevel + ConsoleColors.RESET);
@@ -97,7 +101,7 @@ public class zooManagement{
                         }
                     }
                     break;
-                case "Feed":
+                case "feed":
                     // Check Container to feed
                     String containerToFeed = "";
                     System.out.println(ConsoleColors.CYAN + "What container would you like to feed?" + ConsoleColors.RESET);
@@ -108,7 +112,7 @@ public class zooManagement{
                     System.out.print("\n");
                     userInput = scanner.nextLine();
                     for (Container c : containers){
-                        if (userInput.equals(c.Name)){containerToFeed = c.Name;}
+                        if (userInput.equalsIgnoreCase(c.Name)){containerToFeed = c.Name;}
                     }
                     // Check which food to use
                     String foodToUse = "";
@@ -120,25 +124,27 @@ public class zooManagement{
                     System.out.print("\n");
                     userInput = scanner.nextLine();
                     for (Food f : foods){
-                        if (userInput.equals(f.FoodName)) {foodToUse = f.FoodName;}
+                        if (userInput.equalsIgnoreCase(f.FoodName)) {foodToUse = f.FoodName;}
                     }
                     // Feed container with said food
                     for (Container c : containers) {
-                        if (c.Name.equals(containerToFeed)) {
+                        if (c.Name.equalsIgnoreCase(containerToFeed)) {
                             for (Food f : foods) {
-                                if (f.FoodName.equals(foodToUse)){
+                                if (f.FoodName.equalsIgnoreCase(foodToUse)){
                                     c.feedAll(f);
                                 }
                             }
                         }
                     }
+                    containerToFeed = "";
+                    foodToUse = "";
                     break;
-                case "View Animals":
+                case "view animals":
                     for (Animal a : Animals){
                         System.out.println(ConsoleColors.PURPLE + a.Name + " - Contained in: " + a.BoxContained + ConsoleColors.RESET);
                     }
                     break;
-                case "Commands":
+                case "commands":
                     System.out.println(ConsoleColors.GREEN + "1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals" + ConsoleColors.RESET);
                     break;
                 default:
