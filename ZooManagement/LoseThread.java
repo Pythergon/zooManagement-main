@@ -10,6 +10,7 @@ public class LoseThread implements Runnable {
 
     @Override
     public void run() {
+    // Runs logic to see if all animals died of hunger or uncontained!
         while (true) {
             try {
                 Boolean hasSomeAnimals = false;
@@ -30,7 +31,6 @@ public class LoseThread implements Runnable {
                 System.out.println("MyThreading was interrupted.");
                 break;
             } catch (Exception e) {
-                System.err.println("An unexpected error occurred in MyThreading: " + e.getMessage());
             }
         }
     }

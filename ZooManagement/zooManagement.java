@@ -35,6 +35,7 @@ public class zooManagement{
         foods.add(hay);
         foods.add(horseCrap);
 
+        // Start threads and update container varibles
         for (Container c : containers) {
             if (!c.Animals.isEmpty()){
                 c.hasAnimals = true;
@@ -42,18 +43,17 @@ public class zooManagement{
             c.runTimeLoops();
         }
 
+        // Start lose state thread
         LoseThread loseStateRunnable = new LoseThread(containers);
         Thread loseStateThread = new Thread(loseStateRunnable);
         loseStateThread.start();
 
-        // BreedingThread breedingThreadRunnable = new BreedingThread(containers);
-        // Thread breedingThreadThread = new Thread(breedingThreadRunnable);
-        // breedingThreadThread.start();
-
         boolean running = true;
 
-        System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals\n7. Rename Animal\n8. Move Animal");
+        // Display Commands
+        System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals\n7. Rename Animal\n8. Move Animal\n9. Describe Animals");
 
+        // Main loop
         while (running) {
             // Get user input
             System.out.println("What would you like to-do?");
@@ -149,6 +149,7 @@ public class zooManagement{
                     }
                     break;
                 case "commands":
+                    // Reprints Commands
                     System.out.println(ConsoleColors.GREEN + "1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals" + ConsoleColors.RESET);
                     break;
                 case "rename animal":
@@ -175,51 +176,63 @@ public class zooManagement{
                     animalNameToChange = "";
                     break;
                 case "move animal":
-                    String animalToMove = "";
-                    String containerToUse = "";
+                    // Thank you stack overflow genius for teaching me about Java pointers!
+                    Animal animalToMovePointer = null;
+                    Container sourceContainerPointer = null;
+                    Container destinationContainerPointer = null;
+
                     System.out.println(ConsoleColors.YELLOW + "What animal would you like to move?" + ConsoleColors.RESET);
-                    for (Animal a : Animals){
+                    for (Animal a : Animals) {
                         System.out.print(ConsoleColors.YELLOW + a.Name + "  " + ConsoleColors.RESET);
                     }
                     System.out.print("\n");
-                    userInput = scanner.nextLine();
-                    for (Animal a : Animals){
-                        if (a.Name.equalsIgnoreCase(userInput)){
-                            animalToMove = a.Name;
-                        }
-                    }
-                    System.out.println(ConsoleColors.YELLOW + "What container would you like to move" + animalToMove + "animal to" + ConsoleColors.RESET);
-                    for (Container c : containers){
-                        System.out.print(ConsoleColors.YELLOW + c.Name + "  " + ConsoleColors.RESET);
-                    }
-                    System.out.print("\n");
-                    userInput = scanner.nextLine();
-                    for (Container c : containers){
-                        if (c.Name.equalsIgnoreCase(userInput)){
-                            containerToUse = c.Name;
-                        }
-                    }
+                    String animalName = scanner.nextLine();
 
-                    for (Container c : containers){
-                        for (Animal a : c.Animals){
-                            if (a.Name.equalsIgnoreCase(animalToMove)){
-                                c.removeAnimal(a);
+                    for (Container c : containers) {
+                        for (Animal a : c.Animals) {
+                            if (a.Name.equalsIgnoreCase(animalName)) {
+                                animalToMovePointer = a;
+                                sourceContainerPointer = c;
                                 break;
                             }
                         }
-                    }
-
-                    for (Container c : containers){
-                        if (c.Name.equalsIgnoreCase(containerToUse)){
-                            for (Animal a : Animals){
-                                if (a.Name.equalsIgnoreCase(animalToMove)){
-                                    c.containAnimal(a);
-                                }
-                            }
+                        if (animalToMovePointer != null) {
+                            break;
                         }
                     }
-                    animalToMove = "";
-                    containerToUse = "";
+
+                    // Uh where dat animal duuude! Throws oh crap (error) when animal not found
+                    if (animalToMovePointer == null) {
+                        System.out.println(ConsoleColors.RED + "Couldn't find animal named'" + animalName + ConsoleColors.RESET);
+                        break;
+                    }
+
+                    System.out.println(ConsoleColors.YELLOW + "What container would you like to move " + animalToMovePointer.Name + " to?" + ConsoleColors.RESET);
+                    for (Container c : containers) {
+                        System.out.print(ConsoleColors.YELLOW + c.Name + "  " + ConsoleColors.RESET);
+                    }
+                    System.out.print("\n");
+                    String containerName = scanner.nextLine();
+
+                    for (Container c : containers) {
+                        if (c.Name.equalsIgnoreCase(containerName)) {
+                            destinationContainerPointer = c;
+                            break;
+                        }
+                    }
+
+                    if (destinationContainerPointer == null) {
+                        System.out.println(ConsoleColors.RED + "Error: Container '" + containerName + "' not found. Please try again." + ConsoleColors.RESET);
+                        break;
+                    }
+
+                    // Logic dance! Add the animal to container :)
+                    if (sourceContainerPointer != null) {
+                        sourceContainerPointer.removeAnimal(animalToMovePointer);
+                    } else { System.out.println("Debug - I dont trust my coding skills so i added this debug line"); }
+
+                    destinationContainerPointer.containAnimal(animalToMovePointer);
+                    System.out.println(ConsoleColors.GREEN + "Successfully moved " + animalToMovePointer.Name + " to " + destinationContainerPointer.Name + ConsoleColors.RESET);
                     break;
                 case "describe animals":
                     for (Animal a : Animals){
@@ -227,7 +240,7 @@ public class zooManagement{
                     }
                     break;
                 case "make new animal":
-                    // not know to public ;)
+                    // This is a debugging command and will not be added to command list!
                     System.out.println("This is highly experimental!");
                     System.out.print("Name: ");
                     String newAnimalName = scanner.nextLine();

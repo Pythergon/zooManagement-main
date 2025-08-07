@@ -45,6 +45,7 @@ public class Container {
     
     public void runTimeLoops() {
         // Creating a new thread per container and running the time based logic
+        // Makes Animals Hungry After so long
         Thread objectThreads = new Thread(() -> {            
             int timeWaited = 0;
             while(true){

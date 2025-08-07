@@ -29,5 +29,4 @@ public class Animal {
     public String toString() {
         return String.format("%s is a %d year old %s", this.Name, this.Age, this.Species);
     }
-
 }
