@@ -1,11 +1,14 @@
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 public class zooManagement{
     public static void main(String[] args) {
 
         // Object declarations!
+        Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         Animal romeo = new Animal("Romeo", 4, "Horse", "Male");
         Animal spankey = new Animal("Spankey", 5, "Donkey", "Male");
@@ -49,7 +52,7 @@ public class zooManagement{
 
         boolean running = true;
 
-        System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals");
+        System.out.println("1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals\n7. Rename Animal\n8. Move Animal");
 
         while (running) {
             // Get user input
@@ -81,7 +84,8 @@ public class zooManagement{
                             userInput = scanner.nextLine();
                             for (Container c : containers) {
                                 if (c.SpaceLeft > 0){
-                                    if (c.Name.equalsIgnoreCase(userInput.toLowerCase())){
+                                    if (c.Name.equalsIgnoreCase(
+                                            userInput.toLowerCase())){
                                         c.containAnimal(a);
                                         System.out.println(ConsoleColors.RED + a.Name + " has been contained in - " + c.Name + ConsoleColors.RESET);
                                     }
@@ -146,6 +150,94 @@ public class zooManagement{
                     break;
                 case "commands":
                     System.out.println(ConsoleColors.GREEN + "1. Exit \n2. Commands\n3. Add Animal \n4. Check Hunger\n5. Feed\n6. View Animals" + ConsoleColors.RESET);
+                    break;
+                case "rename animal":
+                    String animalNameToChange = "";
+                    System.out.println(ConsoleColors.BLUE + "What Animal would you like to rename?" + ConsoleColors.RESET);
+                    for (Animal a : Animals){
+                        System.out.print(ConsoleColors.BLUE + a.Name + "    " + ConsoleColors.RESET);
+                    }
+                    System.out.print("\n");
+                    userInput = scanner.nextLine();
+                    for (Animal a : Animals){
+                        if (a.Name.equalsIgnoreCase(userInput)){
+                            animalNameToChange = a.Name;
+                        }
+                    }
+                    System.out.println(ConsoleColors.BLUE + "What would you like to rename your animal to?" + ConsoleColors.RESET);
+                    userInput = scanner.nextLine();
+                    for (Animal a : Animals){
+                        if (a.Name.equalsIgnoreCase(animalNameToChange)){
+                            a.changeName(userInput);
+                        }
+                    }
+                    System.out.println(ConsoleColors.BLUE + "You changed " + animalNameToChange + " to " + userInput + ConsoleColors.RESET);
+                    animalNameToChange = "";
+                    break;
+                case "move animal":
+                    String animalToMove = "";
+                    String containerToUse = "";
+                    System.out.println(ConsoleColors.YELLOW + "What animal would you like to move?" + ConsoleColors.RESET);
+                    for (Animal a : Animals){
+                        System.out.print(ConsoleColors.YELLOW + a.Name + "  " + ConsoleColors.RESET);
+                    }
+                    System.out.print("\n");
+                    userInput = scanner.nextLine();
+                    for (Animal a : Animals){
+                        if (a.Name.equalsIgnoreCase(userInput)){
+                            animalToMove = a.Name;
+                        }
+                    }
+                    System.out.println(ConsoleColors.YELLOW + "What container would you like to move" + animalToMove + "animal to" + ConsoleColors.RESET);
+                    for (Container c : containers){
+                        System.out.print(ConsoleColors.YELLOW + c.Name + "  " + ConsoleColors.RESET);
+                    }
+                    System.out.print("\n");
+                    userInput = scanner.nextLine();
+                    for (Container c : containers){
+                        if (c.Name.equalsIgnoreCase(userInput)){
+                            containerToUse = c.Name;
+                        }
+                    }
+
+                    for (Container c : containers){
+                        for (Animal a : c.Animals){
+                            if (a.Name.equalsIgnoreCase(animalToMove)){
+                                c.removeAnimal(a);
+                                break;
+                            }
+                        }
+                    }
+
+                    for (Container c : containers){
+                        if (c.Name.equalsIgnoreCase(containerToUse)){
+                            for (Animal a : Animals){
+                                if (a.Name.equalsIgnoreCase(animalToMove)){
+                                    c.containAnimal(a);
+                                }
+                            }
+                        }
+                    }
+                    animalToMove = "";
+                    containerToUse = "";
+                    break;
+                case "describe animals":
+                    for (Animal a : Animals){
+                        System.out.println(a.toString());
+                    }
+                    break;
+                case "make new animal":
+                    // not know to public ;)
+                    System.out.println("This is highly experimental!");
+                    System.out.print("Name: ");
+                    String newAnimalName = scanner.nextLine();
+                    System.out.print("Species: ");
+                    String newAnimalSpecies = scanner.nextLine();
+                    int newAniamlAge = random.nextInt(1, 5);
+                    Animal newAnimal = new Animal(newAnimalName,newAniamlAge, newAnimalSpecies, "Male");
+                    Animals.add(newAnimal);
+                    newAnimalName = "";
+                    newAnimalSpecies = "";
                     break;
                 default:
                     System.out.println("Function Not-Found - " + userInput);

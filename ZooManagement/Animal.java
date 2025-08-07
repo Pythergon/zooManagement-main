@@ -21,6 +21,10 @@ public class Animal {
         this.HungerLevel = newHunger;
     }
 
+    public void changeName(String newName){
+        this.Name = newName;
+    }
+
     @Override
     public String toString() {
         return String.format("%s is a %d year old %s", this.Name, this.Age, this.Species);

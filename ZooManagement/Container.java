@@ -27,6 +27,10 @@ public class Container {
         }
     }
 
+    public void removeAnimal(Animal animal){
+        this.Animals.remove(animal);
+    }
+
     public void feedAll(Food foodName) {
         for (Animal a : Animals ) {
             a.changeHunger(0);
