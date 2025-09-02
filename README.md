@@ -2,3 +2,5 @@
 Ok you might be wondering what this is about...
 
 As of 08/06/25 I'm working on making some stuff and as soon as I'm done with something stable I'll realease what I worked on as a stable version and start using PRs (Pull Requests) - Finished, I'll keep you posted on new PRs
+
+brain dump: open a new thread to run input every time i call a method to do such and after returning, instantly close that thread
