@@ -1,40 +1,31 @@
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class zooManagement{
     public static void main(String[] args) {
 
+        List<Animal> Animals = new ArrayList<>();        
+        List<Container> containers = new ArrayList<>();
+        List<Food> foods = new ArrayList<>();
+
+
         // Object declarations!
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
-        Animal romeo = new Animal("Romeo", 4, "Horse", "Male");
-        Animal spankey = new Animal("Spankey", 5, "Donkey", "Male");
-        Animal bambi = new Animal("Bambi", 2, "Deer", "Female");
-        Container container1 = new Container(5, "Container1");
-        Container container2 = new Container(2, "Container2");
-        Food hay = new Food("Hay",100);
-        Food horseCrap = new Food("Horse Crap", 50);
+        Animal romeo = new Animal(Animals, "Romeo", 4, "Horse", "Male");
+        Animal spankey = new Animal(Animals, "Spankey", 5, "Donkey", "Male");
+        Animal bambi = new Animal(Animals, "Bambi", 2, "Deer", "Female");
+        Container container1 = new Container(containers, 5, "Container1");
+        Container container2 = new Container(containers, 2, "Container2");
+        Food hay = new Food(foods, "Hay",100);
+        Food horseCrap = new Food(foods, "Horse Crap", 50);
 
-        // Animal list - crucial for checking
-        List<Animal> Animals = new ArrayList<>();        
-        Animals.add(romeo);
-        Animals.add(spankey);
-        Animals.add(bambi);
-
-        // Container List - needed for running threads as of now
-        List<Container> containers = new ArrayList<>();
-        containers.add(container1);
-        containers.add(container2);
+        // Start user off with one animal inside of container
         container1.containAnimal(bambi);
 
-        // Foods list
-        List<Food> foods = new ArrayList<>();
-        foods.add(hay);
-        foods.add(horseCrap);
-
+        // TODO START RUNNING DELTA TIME IN MAINLOOP
         // Start threads and update container varibles
         for (Container c : containers) {
             if (!c.Animals.isEmpty()){
@@ -247,7 +238,7 @@ public class zooManagement{
                     System.out.print("Species: ");
                     String newAnimalSpecies = scanner.nextLine();
                     int newAniamlAge = random.nextInt(1, 5);
-                    Animal newAnimal = new Animal(newAnimalName,newAniamlAge, newAnimalSpecies, "Male");
+                    Animal newAnimal = new Animal(Animals, newAnimalName,newAniamlAge, newAnimalSpecies, "Male");
                     Animals.add(newAnimal);
                     newAnimalName = "";
                     newAnimalSpecies = "";

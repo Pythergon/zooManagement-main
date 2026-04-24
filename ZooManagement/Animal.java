@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Animal {
     // Varible Decleration
     public String Name;
@@ -9,7 +11,8 @@ public class Animal {
     public String BoxContained = "Not Contained";
 
     // Animal Container
-    public Animal(String Name, int Age, String Species, String Gender) {
+    public Animal(List<Animal> zooList, String Name, int Age, String Species, String Gender) {
+        zooList.add(this);
         this.Name = Name;
         this.Age = Age;
         this.Species = Species;

@@ -10,7 +10,8 @@ public class Container {
     List<Animal> Animals = new ArrayList<>();
 
     // Object Container
-    public Container(int Size, String Name) {
+    public Container(List<Container> zooList, int Size, String Name) {
+        zooList.add(this);
         this.Size = Size;
         this.Name = Name;
         this.SpaceLeft = Size;
