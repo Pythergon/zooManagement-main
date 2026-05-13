@@ -2,10 +2,12 @@ import java.util.List;
 
 public class LoseThread implements Runnable {
     private List<Container> containers;
+    public long time;
 
     // Constructor to receive the list of containers
     public LoseThread(List<Container> containerList) {
         this.containers = containerList;
+        this.time = 0;
     }
 
     @Override
@@ -15,6 +17,7 @@ public class LoseThread implements Runnable {
             try {
                 Boolean hasSomeAnimals = false;
                 Thread.sleep(100); // Sleep for 100 milliseconds
+                this.time += 100;
                 for (Container c : containers) {
                     if (c.hasAnimals) {
                         hasSomeAnimals = true;
